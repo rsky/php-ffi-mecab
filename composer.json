@@ -1,0 +1,27 @@
+{
+    "name": "rsky/ffi-mecab",
+    "description": "MeCab library using FFI",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "MeCab\\": [
+                "src/",
+                "tests/"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Ryusuke SEKIYAMA",
+            "email": "rsky0711@gmail.com"
+        }
+    ],
+    "require": {
+        "ext-ffi": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "vlucas/phpdotenv": "^5.4"
+    }
+}
