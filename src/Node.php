@@ -7,6 +7,9 @@ use FFI\CData;
 
 class Node
 {
+    use NodeCreatorTrait;
+    use PathCreatorTrait;
+
     /**
      * @param Tagger $tagger Nodeはメモリ上ではTaggerに保持されているので
      *                       Nodeが生きている限りは親のTaggerが解放されないように所有する
@@ -15,12 +18,9 @@ class Node
     {
     }
 
-    private function maybeNode(?CData $node): ?Node
+    protected function getTagger(): Tagger
     {
-        if ($node === null) {
-            return null;
-        }
-        return new self($this->tagger, $node);
+        return $this->tagger;
     }
 
     /**
@@ -53,6 +53,24 @@ class Node
     public function bNext(): ?Node
     {
         return $this->maybeNode($this->node->bnext);
+    }
+
+    /**
+     * pointer to the right path.
+     * this value is NULL if MECAB_ONE_BEST mode.
+     */
+    public function rPath(): ?Path
+    {
+        return $this->maybePath($this->node->rpath);
+    }
+
+    /**
+     * pointer to the left path.
+     * this value is NULL if MECAB_ONE_BEST mode.
+     */
+    public function lPath(): ?Path
+    {
+        return $this->maybePath($this->node->lpath);
     }
 
     /**

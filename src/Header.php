@@ -330,5 +330,6 @@ const char* mecab_strerror(mecab_t *mecab);
 void mecab_destroy(mecab_t *mecab);
 const char* mecab_sparse_tostr(mecab_t *mecab, const char *str);
 const mecab_node_t* mecab_sparse_tonode(mecab_t *mecab, const char*);
+const char* mecab_format_node(mecab_t *mecab, const mecab_node_t *node);
 DEFINITION;
 }

@@ -72,4 +72,8 @@ class Tagger
 
         return new Node($this, $node);
     }
+
+    /**
+     *
+     */
 }
