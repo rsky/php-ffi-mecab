@@ -20,7 +20,7 @@ class Tagger
      */
     public function __construct(string $libmecabPath, array $args = [])
     {
-        $this->libmecab = FFI::cdef(Header::C_DEFINITION, $libmecabPath);
+        $this->libmecab = FFI::cdef(Header::CODE, $libmecabPath);
 
         $argc = count($args);
         if ($argc === 0) {
