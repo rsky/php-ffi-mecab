@@ -39,7 +39,7 @@ class Tagger
 
         if (!$this->mecab) {
             $err = $this->libmecab->mecab_strerror(null);
-            throw new RuntimeException('failed to instantiate MeCab: ' . $err);
+            throw new RuntimeException('failed to instantiate MeCab\\Tagger: ' . $err);
         }
     }
 
