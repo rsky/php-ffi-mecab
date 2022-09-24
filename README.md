@@ -18,7 +18,7 @@ FFIを使って実装したPHP向けのMeCabバインディングで、[php-meca
 <?php
 use MeCab\Tagger;
 
-$tagger = new Tagger('/use/lib/libmecab.so');
+$tagger = new Tagger('/usr/lib/libmecab.so');
 echo $tagger->parse('全ては猫様のために');
 ```
 ```
@@ -40,7 +40,7 @@ EOS
 <?php
 use MeCab\MeCab;
 
-$mecab = new MeCab('/use/lib/libmecab.so');
+$mecab = new MeCab('/usr/lib/libmecab.so');
 var_dump($mecab->split('全ては猫様のために'));
 ```
 ```
@@ -70,7 +70,7 @@ array(7) {
 <?php
 use MeCab\Tagger;
 
-$tagger = new Tagger('/use/lib/libmecab.so');
+$tagger = new Tagger('/usr/lib/libmecab.so');
 $node = $tagger->parseToNode('全ては猫様のために');
 
 // ...
