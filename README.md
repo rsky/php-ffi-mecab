@@ -41,7 +41,7 @@ EOS
 use MeCab\MeCab;
 
 $mecab = new MeCab('/use/lib/libmecab.so');
-var_dump($tagger->split('全ては猫様のために'));
+var_dump($mecab->split('全ては猫様のために'));
 ```
 ```
 array(7) {
