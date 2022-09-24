@@ -54,12 +54,4 @@ HERE;
 
         $this->assertInstanceOf(Node::class, $node);
     }
-
-    public function testLifetimeSafe(): void
-    {
-        $tagger = $this->createTagger();
-        $node = $tagger->parseToNode(self::SAMPLE_TEXT);
-        unset($tagger);
-        $this->assertSame(NodeStat::BOS, $node->stat());
-    }
 }
