@@ -80,12 +80,7 @@ class Node
      */
     public function surface(): string
     {
-        $length = $this->length();
-        $surface = FFI::new(sprintf('char[%d]', $length + 1));
-        FFI::memcpy($surface, $this->node->surface, $length);
-        $surface[$length] = "\0";
-
-        return FFI::string($surface);
+        return FFI::string($this->node->surface, $this->length());
     }
 
     /**
@@ -93,7 +88,7 @@ class Node
      */
     public function feature(): string
     {
-        return FFI::string($this->node->feature);
+        return $this->node->feature;
     }
 
     /**
