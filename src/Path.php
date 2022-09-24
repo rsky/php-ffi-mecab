@@ -3,7 +3,13 @@
 namespace MeCab;
 
 use FFI\CData;
+use MeCab\Common\NodeCreatorTrait;
+use MeCab\Common\PathCreatorTrait;
 
+/**
+ * FIXME: mecab_lattice_*系APIのラッパーを実装するまで利用できない
+ * (非推奨のmecab_nbest_*系APIは実装しない)
+ */
 class Path
 {
     use NodeCreatorTrait;

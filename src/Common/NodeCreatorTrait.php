@@ -1,8 +1,10 @@
 <?php
 
-namespace MeCab;
+namespace MeCab\Common;
 
 use FFI\CData;
+use MeCab\Node;
+use MeCab\Tagger;
 
 trait NodeCreatorTrait
 {

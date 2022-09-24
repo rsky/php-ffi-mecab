@@ -6,6 +6,15 @@ use RuntimeException;
 
 class TaggerTest extends MeCabBaseTestCase
 {
+    private Tagger $tagger;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->tagger = $this->createTagger();
+    }
+
     public function testConstructFail(): void
     {
         $this->expectException(RuntimeException::class);
@@ -15,14 +24,13 @@ class TaggerTest extends MeCabBaseTestCase
 
     public function testVersion(): void
     {
-        $version = $this->createTagger()->version();
+        $version = $this->tagger->version();
 
         $this->assertMatchesRegularExpression('/^0\\.9\\d+$/D', $version);
     }
 
     public function testParse(): void
     {
-        $text = '全ては猫様のために';
         $expected = <<<'HERE'
 全て	名詞,副詞可能,*,*,*,*,全て,スベテ,スベテ
 は	助詞,係助詞,*,*,*,*,は,ハ,ワ
@@ -35,16 +43,23 @@ EOS
 
 HERE;
 
-        $result = $this->createTagger()->parse($text);
+        $result = $this->tagger->parse(self::SAMPLE_TEXT);
 
         $this->assertSame($expected, $result);
     }
 
     public function testParseToNode(): void
     {
-        $text = '全ては猫様のために';
-        $node = $this->createTagger()->parseToNode($text);
+        $node = $this->tagger->parseToNode(self::SAMPLE_TEXT);
 
         $this->assertInstanceOf(Node::class, $node);
+    }
+
+    public function testLifetimeSafe(): void
+    {
+        $tagger = $this->createTagger();
+        $node = $tagger->parseToNode(self::SAMPLE_TEXT);
+        unset($tagger);
+        $this->assertSame(NodeStat::BOS, $node->stat());
     }
 }

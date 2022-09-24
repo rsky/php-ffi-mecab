@@ -4,17 +4,25 @@ namespace MeCab;
 
 class MeCabTest extends MeCabBaseTestCase
 {
+    private MeCab $mecab;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->mecab = $this->createMeCab();
+    }
+
     public function testVersion(): void
     {
-        $version = $this->createTagger()->version();
+        $version = $this->mecab->version();
 
         $this->assertMatchesRegularExpression('/^0\\.9\\d+$/D', $version);
     }
 
-    public function testWakati(): void
+    public function testSplit(): void
     {
-        $text = '全ては猫様のために';
-        $words = $this->createMeCab()->wakati($text);
+        $morphs = $this->mecab->split(self::SAMPLE_TEXT);
 
         $this->assertSame([
             '全て',
@@ -24,6 +32,6 @@ class MeCabTest extends MeCabBaseTestCase
             'の',
             'ため',
             'に',
-        ], $words);
+        ], $morphs);
     }
 }

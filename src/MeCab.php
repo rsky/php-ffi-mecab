@@ -24,21 +24,21 @@ class MeCab
     }
 
     /**
-     * 分かち書きを行う
+     * テキストを形態素の配列に分解する
      *
      * @return string[]
      */
-    public function wakati(string $text): array
+    public function split(string $text): array
     {
         $node = $this->tagger->parseToNode($text);
         $node = $node->next(); // Skip BOS
-        $words = [];
+        $morphs = [];
 
         while ($node !== null && $node->stat() !== NodeStat::EOS) {
-            $words[] = $node->surface();
+            $morphs[] = $node->surface();
             $node = $node->next();
         }
 
-        return $words;
+        return $morphs;
     }
 }

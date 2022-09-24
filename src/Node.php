@@ -4,6 +4,8 @@ namespace MeCab;
 
 use FFI;
 use FFI\CData;
+use MeCab\Common\NodeCreatorTrait;
+use MeCab\Common\PathCreatorTrait;
 
 class Node
 {

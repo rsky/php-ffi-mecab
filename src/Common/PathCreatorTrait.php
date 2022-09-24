@@ -1,8 +1,10 @@
 <?php
 
-namespace MeCab;
+namespace MeCab\Common;
 
 use FFI\CData;
+use MeCab\Path;
+use MeCab\Tagger;
 
 trait PathCreatorTrait
 {

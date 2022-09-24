@@ -1,11 +1,11 @@
 <?php
 
-namespace MeCab;
+namespace MeCab\FFI;
 
 use FFI;
 use FFI\CData;
 
-class FFIUtil
+class Util
 {
     public static function toCString(string $str, bool $owned = true): CData
     {

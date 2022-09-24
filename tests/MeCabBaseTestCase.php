@@ -6,6 +6,8 @@ use PHPUnit\Framework\TestCase;
 
 abstract class MeCabBaseTestCase extends TestCase
 {
+    public const SAMPLE_TEXT = '全ては猫様のために';
+
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();

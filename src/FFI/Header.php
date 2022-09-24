@@ -1,6 +1,6 @@
 <?php
 
-namespace MeCab;
+namespace MeCab\FFI;
 
 class Header
 {

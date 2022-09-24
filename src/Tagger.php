@@ -3,13 +3,16 @@
 namespace MeCab;
 
 use FFI;
+use FFI\CData;
+use MeCab\FFI\Util;
+use MeCab\FFI\Header;
 use RuntimeException;
 
 class Tagger
 {
     private FFI $libmecab;
 
-    private ?FFI\CData $mecab;
+    private ?CData $mecab;
 
     /**
      * @param string $libmecabPath Path for the libmecab DLL.
@@ -26,7 +29,7 @@ class Tagger
             $argv = FFI::new(FFI::arrayType(FFI::type('char *'), [$argc]));
             $args = array_values($args);
             for ($i = 0; $i < $argc; $i++) {
-                $argv[$i] = FFIUtil::toCString($args[$i], false);
+                $argv[$i] = Util::toCString($args[$i], false);
             }
             $this->mecab = $this->libmecab->mecab_new($argc, $argv);
             for ($i = 0; $i < $argc; $i++) {
@@ -72,8 +75,4 @@ class Tagger
 
         return new Node($this, $node);
     }
-
-    /**
-     *
-     */
 }
